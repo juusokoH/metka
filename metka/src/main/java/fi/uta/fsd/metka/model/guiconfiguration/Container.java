@@ -29,6 +29,7 @@
 package fi.uta.fsd.metka.model.guiconfiguration;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import fi.uta.fsd.metka.enums.ContainerType;
 import fi.uta.fsd.metka.enums.ContentType;
 import fi.uta.fsd.metka.enums.SectionState;
@@ -55,7 +56,7 @@ public class Container {
     private final Map<String, Container> subfieldConfiguration = new HashMap<>();
     private Boolean hidePageButtons = false;
 
-    private final Set<String> permissions = new HashSet<>();
+    private Set<String> permissions = new HashSet<>();
 
     private ContentType contentType = ContentType.FIELD;
     private FieldDescription field = null;
@@ -191,6 +192,10 @@ public class Container {
 
     public Set<String> getPermissions() {
         return permissions;
+    }
+
+    public void setPermissions(Set<String> permissions) {
+        this.permissions = permissions == null ? new HashSet<String>() : permissions;
     }
 
     public ContentType getContentType() {
